@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FH Crossword — You've been challenged</title>
+<style>
+  :root { --ink:#1d1f20; --paper:#f2f2f3; --steel-deep:#416180; --steel-field:#1d2d3d; --amber:#c99150; --neutral:#5d5d60; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--paper); color:var(--ink); line-height:1.6; }
+  header { background:var(--steel-field); color:var(--paper); padding:48px 24px 40px; }
+  .wordmark { display:flex; align-items:center; gap:10px; max-width:640px; margin:0 auto; }
+  .tile { width:34px; height:34px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:19px; }
+  .tile.f { background:var(--paper); color:var(--steel-field); }
+  .tile.h { background:var(--amber); color:#241a09; }
+  .wordmark .name { font-size:24px; font-weight:700; margin-left:4px; }
+  main { max-width:640px; margin:0 auto; padding:40px 24px 80px; }
+  h1 { font-size:28px; margin:0 0 8px; }
+  p { margin:0 0 16px; }
+  .time { font-size:56px; font-weight:700; font-variant-numeric:tabular-nums; margin:8px 0 4px; }
+  .note { color:var(--neutral); font-size:14px; }
+  .button { display:block; text-align:center; text-decoration:none; font-weight:700; padding:16px; margin:24px 0 12px; background:var(--steel-deep); color:var(--paper); }
+  .button.secondary { background:none; color:var(--steel-deep); border:1px solid rgba(29,31,32,0.24); }
+  [hidden] { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark"><span class="tile f">F</span><span class="tile h">H</span><span class="name">Crossword</span></div>
+</header>
+<main>
+  <div id="challenge" hidden>
+    <h1>A friend wants a race</h1>
+    <p>They solved a 5×5 crossword and sent you the same grid. Time to beat:</p>
+    <div class="time" id="time"></div>
+    <p class="note" id="how"></p>
+    <a class="button" id="open" href="#">Open in FH Crossword</a>
+    <a class="button secondary" href="https://apps.apple.com/app/fh-crossword/id6828142098">Get FH Crossword on the App Store</a>
+    <p class="note">Free, no ads, no account. Install it first if the top button does nothing, then tap the link in your message again.</p>
+  </div>
+  <div id="bad" hidden>
+    <h1>This challenge link is incomplete</h1>
+    <p>Ask your friend to send it again from the result screen in FH Crossword.</p>
+    <a class="button secondary" href="https://apps.apple.com/app/fh-crossword/id6828142098">FH Crossword on the App Store</a>
+  </div>
+</main>
+<script>
+  // Everything shown or linked is rebuilt from validated values; the raw
+  // query string never reaches the page or the app link.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var s = q.get("s") || "", t = q.get("t") || "", h = q.get("h") === "1" ? "1" : "0";
+    var seconds = /^[0-9]{1,5}$/.test(t) ? parseInt(t, 10) : 0;
+    if (!/^[0-9a-z]{1,13}$/.test(s) || seconds < 1 || seconds > 86400) {
+      document.getElementById("bad").hidden = false;
+      return;
+    }
+    var m = Math.floor(seconds / 60), sec = seconds % 60;
+    document.getElementById("time").textContent = m + ":" + (sec < 10 ? "0" : "") + sec;
+    document.getElementById("how").textContent = h === "1"
+      ? "They used Check or Reveal. Solve it clean and you win whatever the clock says."
+      : "No checks, no reveals. Use either and they win.";
+    document.getElementById("open").href = "fhcrossword://challenge?s=" + s + "&t=" + seconds + "&h=" + h;
+    document.getElementById("challenge").hidden = false;
+  })();
+</script>
+</body>
+</html>
