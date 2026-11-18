@@ -65,7 +65,7 @@
   <p><strong>Nothing.</strong> FH Crossword has no user accounts, includes no analytics, advertising, or tracking SDKs, and sends nothing to FH Development Studio. We operate no servers for this app, so there is nothing for us to receive.</p>
 
   <h2>What's stored on your device</h2>
-  <p>Your puzzle history and statistics (which puzzles you played, whether you finished them, your solve times, whether you used Check or Reveal, and your day streak) are stored on your device using Apple's SwiftData framework. Your settings are stored on your device and sync only through your own iCloud account, as described below.</p>
+  <p>Your puzzle history and statistics (which puzzles you played, whether you finished them, your solve times, whether you used Check or Reveal, and your day streak) are stored on your device using Apple's SwiftData framework. An unfinished Unlimited or themed puzzle and your record of races against friends are kept on the device only. Your settings are stored on your device and sync only through your own iCloud account, as described below.</p>
 
   <h2>iCloud sync</h2>
   <p>If you're signed in to iCloud, your history and settings also sync through your own private iCloud account, using Apple's CloudKit and iCloud key-value storage. That means they reach your other devices signed in to the same Apple Account, and they come back if you reinstall the app. This data:</p>
@@ -79,13 +79,16 @@
   <p>Deleting the app removes the copy on that device. Removing the data held in your iCloud account is done through Apple's own iCloud settings, since it's your account, not ours.</p>
 
   <h2>Game Center</h2>
-  <p>If you're signed in to Game Center, the app submits your solve times and achievements to Apple's Game Center. That information is handled by Apple under Apple's own Game Center privacy practices; it is not sent to us. The game works without Game Center.</p>
+  <p>If you're signed in to Game Center, the app submits your solve times, streaks, number of puzzles solved, and achievements to Apple's Game Center. That information is handled by Apple under Apple's own Game Center privacy practices; it is not sent to us. The game works without Game Center.</p>
 
   <h2>Daily reminder</h2>
   <p>The optional daily reminder is a local notification scheduled on your device. It is not sent through any server, and you can turn it off in the app's Settings or in iOS Settings.</p>
 
+  <h2>Challenge links</h2>
+  <p>When you challenge a friend, the app creates a link that carries only three values: a puzzle number (seed), your solve time, and whether you used Check or Reveal. No name, account, or other information is included. You choose whether and with whom to share it, using iOS's own share sheet. The link opens a static page on GitHub Pages that hands those three values to the app; the page stores and sends nothing to us. Like any website, GitHub may log the visit under its own privacy practices.</p>
+
   <h2>Third parties</h2>
-  <p>FH Crossword uses no third-party SDKs, analytics services, or advertising networks of any kind. The only outside services involved are Apple's iCloud and Game Center, acting on your account.</p>
+  <p>FH Crossword uses no third-party SDKs, analytics services, or advertising networks of any kind. The only outside services involved are Apple's iCloud and Game Center, acting on your account, and the challenge-link page described above if you open one.</p>
 
   <h2>Children's privacy</h2>
   <p>FH Crossword does not collect personal information from anyone, including children under 13, for the same reason stated above: it collects no data from anyone.</p>
